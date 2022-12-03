@@ -3,6 +3,6 @@ mod problems {
 }
 
 fn main() {
-    problems::day01::part1();
-    problems::day01::part2();
+    problems::day03::part1();
+    problems::day03::part2();
 }
