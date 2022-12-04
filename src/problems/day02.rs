@@ -1,5 +1,3 @@
-use std::fs;
-
 fn win_score(opponent: &str, mine: &str) -> i32 {
     match mine {
         "X" => match opponent {
@@ -48,13 +46,10 @@ fn shape_from_outcome<'a>(opponent: &str, outcome: &str) -> &'a str {
     }
 }
 
-pub fn part1() {
-    let contents =
-        fs::read_to_string("src/input/day02_input.txt").expect("Could not read input file");
-
+pub fn part1(input: &[String]) -> i32 {
     let mut score = 0;
 
-    for line in contents.lines() {
+    for line in input {
         let mut iter = line.split_whitespace();
         let opponent = iter.next().unwrap();
         let mine = iter.next().unwrap();
@@ -71,16 +66,13 @@ pub fn part1() {
         score += shape_score + outcome_score;
     }
 
-    println!("{}", score);
+    score
 }
 
-pub fn part2() {
-    let contents =
-        fs::read_to_string("src/input/day02_input.txt").expect("Could not read input file");
-
+pub fn part2(input: &[String]) -> i32 {
     let mut score = 0;
 
-    for line in contents.lines() {
+    for line in input {
         let mut iter = line.split_whitespace();
         let opponent = iter.next().unwrap();
         let outcome = iter.next().unwrap();
@@ -99,5 +91,5 @@ pub fn part2() {
         score += shape_score + outcome_score;
     }
 
-    println!("{}", score);
+    score
 }

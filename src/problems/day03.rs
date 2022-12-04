@@ -1,5 +1,3 @@
-use std::fs;
-
 fn get_priority(item: char) -> i32 {
     let ascii_code = item as u8;
     match ascii_code {
@@ -9,13 +7,10 @@ fn get_priority(item: char) -> i32 {
     }
 }
 
-pub fn part1() {
-    let contents =
-        fs::read_to_string("src/input/day03_input.txt").expect("Could not read input file");
-
+pub fn part1(input: &[String]) -> i32 {
     let mut sum = 0;
 
-    for line in contents.lines() {
+    for line in input {
         let first_compartment = &line[0..line.len() / 2];
         let second_compartment = &line[line.len() / 2..line.len()];
 
@@ -29,16 +24,13 @@ pub fn part1() {
         }
     }
 
-    println!("{}", sum);
+    sum
 }
 
-pub fn part2() {
-    let contents =
-        fs::read_to_string("src/input/day03_input.txt").expect("Could not read input file");
-
+pub fn part2(input: &[String]) -> i32 {
     let mut sum = 0;
 
-    let mut iter = contents.lines();
+    let mut iter = input.iter();
 
     loop {
         let first = match iter.next() {
@@ -68,5 +60,5 @@ pub fn part2() {
         }
     }
 
-    println!("{}", sum);
+    sum
 }
