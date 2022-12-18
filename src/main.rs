@@ -1,4 +1,4 @@
-use problems::day04;
+use problems::day05;
 
 mod advent_of_code;
 
@@ -7,7 +7,7 @@ mod problems {
 }
 
 fn main() {
-    let input = advent_of_code::read_input(4);
-    advent_of_code::answer(1, Some(550), day04::part1(&input[..]));
-    advent_of_code::answer(2, Some(931), day04::part2(&input[..]));
+    let input = advent_of_code::read_input(5);
+    advent_of_code::answer(1, Some(String::from("FZCMJCRHZ")), day05::part1(&input));
+    advent_of_code::answer(2, Some(String::from("JSDHQMZGF")), day05::part2(&input));
 }
