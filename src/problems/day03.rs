@@ -1,13 +1,13 @@
-fn get_priority(item: char) -> i32 {
-    let ascii_code = item as u8;
-    match ascii_code {
-        65..=90 => ascii_code as i32 - 38,
-        97..=122 => ascii_code as i32 - 96,
-        _ => panic!("Not valid item code"),
-    }
+use crate::advent_of_code;
+
+#[allow(dead_code)]
+pub fn run() {
+    let input = advent_of_code::read_input_lines(3);
+    advent_of_code::answer(1, Some(7903), part1(&input));
+    advent_of_code::answer(2, Some(2548), part2(&input));
 }
 
-pub fn part1(input: &[String]) -> i32 {
+fn part1(input: &[String]) -> i32 {
     let mut sum = 0;
 
     for line in input {
@@ -27,7 +27,7 @@ pub fn part1(input: &[String]) -> i32 {
     sum
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut sum = 0;
 
     let mut iter = input.iter();
@@ -61,4 +61,13 @@ pub fn part2(input: &[String]) -> i32 {
     }
 
     sum
+}
+
+fn get_priority(item: char) -> i32 {
+    let ascii_code = item as u8;
+    match ascii_code {
+        65..=90 => ascii_code as i32 - 38,
+        97..=122 => ascii_code as i32 - 96,
+        _ => panic!("Not valid item code"),
+    }
 }

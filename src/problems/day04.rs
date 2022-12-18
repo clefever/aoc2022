@@ -1,4 +1,13 @@
-pub fn part1(input: &[String]) -> i32 {
+use crate::advent_of_code;
+
+#[allow(dead_code)]
+pub fn run() {
+    let input = advent_of_code::read_input_lines(4);
+    advent_of_code::answer(1, Some(550), part1(&input));
+    advent_of_code::answer(2, Some(931), part2(&input));
+}
+
+fn part1(input: &[String]) -> i32 {
     let mut sum = 0;
 
     for line in input {
@@ -20,7 +29,7 @@ pub fn part1(input: &[String]) -> i32 {
     sum
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut sum = 0;
 
     for line in input {

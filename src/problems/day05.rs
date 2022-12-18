@@ -1,6 +1,15 @@
 use fxhash::FxHashMap;
 
-pub fn part1(input: &[String]) -> String {
+use crate::advent_of_code;
+
+#[allow(dead_code)]
+pub fn run() {
+    let input = advent_of_code::read_input_lines(5);
+    advent_of_code::answer(1, Some(String::from("FZCMJCRHZ")), part1(&input));
+    advent_of_code::answer(2, Some(String::from("JSDHQMZGF")), part2(&input));
+}
+
+fn part1(input: &[String]) -> String {
     let mut stacks: FxHashMap<i32, Vec<String>> = FxHashMap::default();
 
     let columns = (input[0].len() as f64 / 4.0).ceil() as i32;
@@ -69,7 +78,7 @@ pub fn part1(input: &[String]) -> String {
     sum.join("")
 }
 
-pub fn part2(input: &[String]) -> String {
+fn part2(input: &[String]) -> String {
     let mut stacks: FxHashMap<i32, Vec<String>> = FxHashMap::default();
 
     let columns = (input[0].len() as f64 / 4.0).ceil() as i32;

@@ -1,3 +1,60 @@
+use crate::advent_of_code;
+
+#[allow(dead_code)]
+pub fn run() {
+    let input = advent_of_code::read_input_lines(2);
+    advent_of_code::answer(1, Some(13052), part1(&input));
+    advent_of_code::answer(2, Some(13693), part2(&input));
+}
+
+fn part1(input: &[String]) -> i32 {
+    let mut score = 0;
+
+    for line in input {
+        let mut iter = line.split_whitespace();
+        let opponent = iter.next().unwrap();
+        let mine = iter.next().unwrap();
+
+        let shape_score = match mine {
+            "X" => 1,
+            "Y" => 2,
+            "Z" => 3,
+            _ => panic!("Invalid shape"),
+        };
+
+        let outcome_score = win_score(opponent, mine);
+
+        score += shape_score + outcome_score;
+    }
+
+    score
+}
+
+fn part2(input: &[String]) -> i32 {
+    let mut score = 0;
+
+    for line in input {
+        let mut iter = line.split_whitespace();
+        let opponent = iter.next().unwrap();
+        let outcome = iter.next().unwrap();
+
+        let mine = shape_from_outcome(opponent, outcome);
+
+        let shape_score = match mine {
+            "X" => 1,
+            "Y" => 2,
+            "Z" => 3,
+            _ => panic!("Invalid shape"),
+        };
+
+        let outcome_score = win_score(opponent, mine);
+
+        score += shape_score + outcome_score;
+    }
+
+    score
+}
+
 fn win_score(opponent: &str, mine: &str) -> i32 {
     match mine {
         "X" => match opponent {
@@ -44,52 +101,4 @@ fn shape_from_outcome<'a>(opponent: &str, outcome: &str) -> &'a str {
         },
         _ => panic!("Invalid shape"),
     }
-}
-
-pub fn part1(input: &[String]) -> i32 {
-    let mut score = 0;
-
-    for line in input {
-        let mut iter = line.split_whitespace();
-        let opponent = iter.next().unwrap();
-        let mine = iter.next().unwrap();
-
-        let shape_score = match mine {
-            "X" => 1,
-            "Y" => 2,
-            "Z" => 3,
-            _ => panic!("Invalid shape"),
-        };
-
-        let outcome_score = win_score(opponent, mine);
-
-        score += shape_score + outcome_score;
-    }
-
-    score
-}
-
-pub fn part2(input: &[String]) -> i32 {
-    let mut score = 0;
-
-    for line in input {
-        let mut iter = line.split_whitespace();
-        let opponent = iter.next().unwrap();
-        let outcome = iter.next().unwrap();
-
-        let mine = shape_from_outcome(opponent, outcome);
-
-        let shape_score = match mine {
-            "X" => 1,
-            "Y" => 2,
-            "Z" => 3,
-            _ => panic!("Invalid shape"),
-        };
-
-        let outcome_score = win_score(opponent, mine);
-
-        score += shape_score + outcome_score;
-    }
-
-    score
 }

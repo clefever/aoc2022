@@ -1,4 +1,13 @@
-pub fn part1(input: &[String]) -> i32 {
+use crate::advent_of_code;
+
+#[allow(dead_code)]
+pub fn run() {
+    let input = advent_of_code::read_input_lines(1);
+    advent_of_code::answer(1, Some(68775), part1(&input));
+    advent_of_code::answer(2, Some(202585), part2(&input));
+}
+
+fn part1(input: &[String]) -> i32 {
     let mut sums = Vec::new();
     let mut curr_sum = 0;
 
@@ -15,7 +24,7 @@ pub fn part1(input: &[String]) -> i32 {
     *sums.iter().max().unwrap()
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut sums = Vec::new();
     let mut curr_sum = 0;
 
