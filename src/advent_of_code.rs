@@ -1,7 +1,12 @@
 use std::fs;
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
-pub fn read_input(day: i32) -> Vec<String> {
+pub fn read_input(day: i32) -> String {
+    fs::read_to_string(format!("src/input/day{:02}_input.txt", day))
+        .expect("input file should be a valid file")
+}
+
+pub fn read_input_lines(day: i32) -> Vec<String> {
     let contents = fs::read_to_string(format!("src/input/day{:02}_input.txt", day))
         .expect("input file should be a valid file");
 
