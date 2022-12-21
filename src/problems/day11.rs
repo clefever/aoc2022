@@ -17,7 +17,7 @@ struct Monkey {
     false_path: i32,
 }
 
-pub fn part1(input: &String) -> i32 {
+fn part1(input: &String) -> i32 {
     const MAX_ROUNDS: i32 = 20;
 
     let mut monkeys: Vec<Monkey> = Vec::new();
@@ -102,7 +102,7 @@ pub fn part1(input: &String) -> i32 {
     monkeys.pop().unwrap().inspections * monkeys.pop().unwrap().inspections
 }
 
-pub fn part2(input: &String) -> i64 {
+fn part2(input: &String) -> i64 {
     const MAX_ROUNDS: i32 = 10000;
 
     let mut monkeys: Vec<Monkey> = Vec::new();

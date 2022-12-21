@@ -9,7 +9,7 @@ pub fn run() {
     advent_of_code::answer(2, Some(2578), part2(&input));
 }
 
-pub fn part1(input: &[String]) -> i32 {
+fn part1(input: &[String]) -> i32 {
     let mut positions = FxHashSet::default();
     positions.insert((0, 0));
 
@@ -41,7 +41,7 @@ pub fn part1(input: &[String]) -> i32 {
     positions.len() as i32
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut positions = FxHashSet::default();
     positions.insert((0, 0));
 

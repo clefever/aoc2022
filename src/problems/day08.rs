@@ -9,7 +9,7 @@ pub fn run() {
     advent_of_code::answer(2, Some(504000), part2(&input));
 }
 
-pub fn part1(input: &[String]) -> i32 {
+fn part1(input: &[String]) -> i32 {
     let mut trees: FxHashMap<(i32, i32), i32> = FxHashMap::default();
 
     let mut row = 0;
@@ -77,7 +77,7 @@ pub fn part1(input: &[String]) -> i32 {
     sum
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut trees: FxHashMap<(i32, i32), i32> = FxHashMap::default();
 
     let mut row = 0;

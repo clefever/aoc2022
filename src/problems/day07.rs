@@ -10,7 +10,7 @@ pub fn run() {
     advent_of_code::answer(2, Some(6183184), part2(&input));
 }
 
-pub fn part1(input: &[String]) -> i32 {
+fn part1(input: &[String]) -> i32 {
     let mut sizes: FxHashMap<String, i32> = FxHashMap::default();
     let mut dirs = Vec::new();
 
@@ -44,7 +44,7 @@ pub fn part1(input: &[String]) -> i32 {
     sizes.values().filter(|x| **x <= 100_000).sum()
 }
 
-pub fn part2(input: &[String]) -> i32 {
+fn part2(input: &[String]) -> i32 {
     let mut sizes: FxHashMap<String, i32> = FxHashMap::default();
     let mut dirs = Vec::new();
 

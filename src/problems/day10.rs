@@ -9,7 +9,7 @@ pub fn run() {
     advent_of_code::answer(2, None, part2(&input));
 }
 
-pub fn part1(input: &[String]) -> i32 {
+fn part1(input: &[String]) -> i32 {
     let mut milestones = vec![20, 60, 100, 140, 180, 220];
     let mut sum = 0;
     let mut cycles = 0;
@@ -42,7 +42,7 @@ pub fn part1(input: &[String]) -> i32 {
     sum
 }
 
-pub fn part2(input: &[String]) -> String {
+fn part2(input: &[String]) -> String {
     let mut pixels = vec![vec!['.'; 40]; 6];
 
     const MAX_CYCLES: i32 = 240;
