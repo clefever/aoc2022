@@ -10,23 +10,19 @@ pub fn run() {
 }
 
 fn part1(input: &str) -> i32 {
-    for i in 0..=input.len() - 4 {
-        let marker = &input[i..i + 4];
-        let folded = marker.chars().unique();
-        if marker.len() == folded.count() {
-            return i as i32 + 4;
-        }
-    }
-
-    -1
+    find_start_of_packet(input, 4)
 }
 
 fn part2(input: &str) -> i32 {
-    for i in 0..=input.len() - 14 {
-        let marker = &input[i..i + 14];
+    find_start_of_packet(input, 14)
+}
+
+fn find_start_of_packet(input: &str, num_unique: usize) -> i32 {
+    for i in 0..=input.len() - num_unique {
+        let marker = &input[i..i + num_unique];
         let folded = marker.chars().unique();
         if marker.len() == folded.count() {
-            return i as i32 + 14;
+            return (i + num_unique) as i32;
         }
     }
 
