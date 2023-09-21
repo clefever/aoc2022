@@ -20,8 +20,7 @@ fn part2(input: &str) -> i32 {
 fn find_start_of_packet(input: &str, num_unique: usize) -> i32 {
     for i in 0..=input.len() - num_unique {
         let marker = &input[i..i + num_unique];
-        let folded = marker.chars().unique();
-        if marker.len() == folded.count() {
+        if marker.len() == marker.chars().unique().count() {
             return (i + num_unique) as i32;
         }
     }
