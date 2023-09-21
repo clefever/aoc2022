@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 automod = "1.0"
 fxhash = "0.2.1"
-itertools = "0.10.5"
-termcolor = "1.1"
+itertools = "0.11.0"
+termcolor = "1.3"
