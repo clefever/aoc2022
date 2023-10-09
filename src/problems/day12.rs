@@ -11,59 +11,11 @@ pub fn run() {
 }
 
 fn part1(tile_map: &TileMap) -> i32 {
-    let mut distance = 1;
-    let mut moves = vec![(tile_map.end.0, tile_map.end.1, 0)];
-
-    loop {
-        let mut valid = vec![];
-        for i in 0..moves.len() {
-            valid.append(&mut get_valid_tiles((moves[i].0, moves[i].1), &tile_map.tiles, tile_map.height, tile_map.width));
-        }
-        
-        for tile in &valid[..] {
-            if !moves.iter().any(|&x| tile.0 == x.0 && tile.1 == x.1)
-            {
-                moves.push((tile.0, tile.1, distance));
-            }
-        }
-
-        if valid.iter().any(|&x| tile_map.start.0 == x.0 && tile_map.start.1 == x.1)
-        {
-            break;
-        }
-
-        distance += 1;
-    }
-
-    distance
+    calculate_distance::<_, (i32, i32)>(tile_map, |mut x| x.any(|&y| tile_map.start.0 == y.0 && tile_map.start.1 == y.1))
 }
 
 fn part2(tile_map: &TileMap) -> i32 {
-    let mut distance = 1;
-    let mut moves = vec![(tile_map.end.0, tile_map.end.1, 0)];
-
-    loop {
-        let mut valid = vec![];
-        for i in 0..moves.len() {
-            valid.append(&mut get_valid_tiles((moves[i].0, moves[i].1), &tile_map.tiles, tile_map.height, tile_map.width));
-        }
-        
-        for tile in &valid[..] {
-            if !moves.iter().any(|&x| tile.0 == x.0 && tile.1 == x.1)
-            {
-                moves.push((tile.0, tile.1, distance));
-            }
-        }
-
-        if valid.iter().any(|x| tile_map.tiles.get(x).unwrap() == &'a')
-        { 
-            break;
-        }
-
-        distance += 1;
-    }
-
-    distance
+    calculate_distance::<_, (i32, i32)>(tile_map, |mut x| x.any( |y| tile_map.tiles[y] == 'a'))
 }
 
 fn parse_map(input: &[String]) -> TileMap
@@ -88,6 +40,31 @@ fn parse_map(input: &[String]) -> TileMap
     }
 
     TileMap { tiles, start, end, height: input.len() as i32, width: input[0].len() as i32 }
+}
+
+fn calculate_distance<F: Fn(std::slice::Iter<'_, (i32, i32)>) -> bool, T>(tile_map: &TileMap, f: F) -> i32 {
+    let mut moves = vec![(tile_map.end.0, tile_map.end.1, 0)];
+    let mut counter = 0;
+
+    loop {
+        let mut valid = vec![];
+        valid.append(&mut get_valid_tiles((moves[counter].0, moves[counter].1), &tile_map.tiles, tile_map.height, tile_map.width));
+        
+        for tile in &valid[..] {
+            if !moves.iter().any(|&x| tile.0 == x.0 && tile.1 == x.1)
+            {
+                moves.push((tile.0, tile.1, moves[counter].2 + 1));
+            }
+        }
+
+        if f(valid.iter()) {
+            break;
+        }
+
+        counter += 1;
+    }
+
+    moves[counter].2 + 1
 }
 
 fn get_valid_tiles(tile: (i32, i32), tiles: &FxHashMap<(i32, i32), char>, height: i32, width: i32) -> Vec<(i32, i32)> {
