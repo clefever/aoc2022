@@ -25,8 +25,9 @@ fn parse_map(input: &[String]) -> TileMap
     let mut tiles: FxHashMap<(i32, i32), char> = FxHashMap::default();
 
     for y in 0..input.len() {
+        let mut row = input[y].chars();
         for x in 0..input[y].len() {
-            let char = input[y].chars().nth(x).unwrap();
+            let char = row.next().unwrap();
             if char == 'S' {
                 start = (x as i32, y as i32);
             }
@@ -35,7 +36,7 @@ fn parse_map(input: &[String]) -> TileMap
                 end = (x as i32, y as i32);
             }
 
-            tiles.insert((x as i32, y as i32), input[y].chars().nth(x).unwrap());
+            tiles.insert((x as i32, y as i32), char);
         }
     }
 
